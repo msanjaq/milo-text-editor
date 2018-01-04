@@ -4,4 +4,3 @@ milo: milo.c
 run: milo
 	./milo
 	rm -f milo
-	reset

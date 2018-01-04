@@ -137,12 +137,25 @@ void editorDrawRows(struct abuf* ab)
 	for (y = 0; y < E.screenrows; ++y){
 		if (y == E.screenrows/3){
 			char welcome[80];
+
 			int welcomelen = snprintf(welcome, sizeof(welcome),
 				"Milo editor -- verson %s", MILO_VERSION);
+
 			if (welcomelen > E.screencols)
 				welcomelen = E.screencols;
 
+			int padding = (E.screencols - welcomelen) / 2;
+
+			if (padding){
+				abAppend(ab, "~", 1);
+				--padding;
+			}
+
+			while(padding--) 
+				abAppend(ab, " ", 1);
+
 			abAppend(ab, welcome, welcomelen);
+
 		} else {
 			abAppend(ab, "~", 1);
 		}

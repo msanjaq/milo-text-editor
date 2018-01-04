@@ -5,8 +5,12 @@
 #include <termios.h>
 #include <unistd.h>
 
+#define CTRL_KEY(k) ((k) & 0x1f)
+
+/* data */
 struct termios orig_termios;
 
+/* terminal */
 void die(const char* s)
 {
 	perror(s);
@@ -37,6 +41,8 @@ void enableRawMode()
 		die("tcsetattr");
 }
 
+/* init */
+
 int main()
 {
         enableRawMode();
@@ -51,7 +57,7 @@ int main()
 		else 
                         printf("%d ('%c')\r\n", c, c);
                 
-		if (c == 'q') 
+		if (c == CTRL_KEY('q')) 
 			break;
         }
 

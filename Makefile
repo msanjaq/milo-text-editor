@@ -2,5 +2,5 @@ milo: milo.c
 	$(CC) milo.c -o milo -Wall -Wextra -pedantic -std=c99
 
 run: milo
-	./milo
+	valgrind ./milo
 	rm -f milo
